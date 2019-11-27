@@ -8,11 +8,11 @@ class GoalsController < ApplicationController
   end
 
   def create
-    goal = Goal.new(goal_params)
-    if goal.save
-      redirect_to goal_url(goal)
+    @goal = current_user.goals.new(goal_params)
+    if @goal.save
+      redirect_to goal_url(@goal)
     else
-      flash.now[:errors] = goal.errors.full_messages
+      flash.now[:errors] = @goal.errors.full_messages
       render :new
     end
   end

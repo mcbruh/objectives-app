@@ -1,7 +1,10 @@
 FactoryBot.define do
   factory :user do
-    username { "MyString" }
-    password_digest { "MyString" }
-    session_token { "MyString" }
+    username { Faker::Internet.user_name }
+    password { "good_password" }
+
+    factory :new_user do
+      username {"new_user"}
+    end
   end
 end

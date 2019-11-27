@@ -5,18 +5,17 @@ class SessionsController < ApplicationController
     end
 
     def create
-        user = User.find_by_credentials(params[:username], params[:password])
-        if user
-            session[:user_id] = user.id
-            redirect_to user_url(user)
+        user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+        if user.nil?
+            render json: 'Bad credentials'
         else
-            flash.now[:errors] = user.errors.full_messages
-            render :new
+            log_in!(user)
+            redirect_to user_url(user)
         end
     end
 
     def destroy
-        session[:user_id] = nil
+        log_out!
         redirect_to new_session_url
     end
 

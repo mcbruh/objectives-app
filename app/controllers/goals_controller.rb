@@ -1,42 +1,42 @@
 class GoalsController < ApplicationController
 
     before_action :require_user!
-  
-  def new
-    @goal = Goal.new
-    render :new
-  end
 
-  def create
-    @goal = current_user.goals.new(goal_params)
-    if @goal.save
-      redirect_to goal_url(@goal)
-    else
-      flash.now[:errors] = @goal.errors.full_messages
-      render :new
+    def new
+        @goal = Goal.new
+        render :new
     end
-  end
 
-  def show
-    
-  end
+    def create
+        @goal = current_user.goals.new(goal_params)
+        if @goal.save
+            redirect_to goal_url(@goal)
+        else
+            flash.now[:errors] = @goal.errors.full_messages
+            render :new
+        end
+    end
 
-  def edit
+    def show
 
-  end
+    end
 
-  def update
+    def edit
 
-  end
+    end
 
-  def destroy
+    def update
 
-  end
+    end
 
-  private
+    def destroy
 
-  def goal_params
-    params.require(:goal).permit(:title, :user_id, :details, :private, :completed) 
-  end
+    end
+
+    private
+
+    def goal_params
+        params.require(:goal).permit(:title, :details, :private, :completed)
+    end
 
 end

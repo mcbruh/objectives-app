@@ -18,7 +18,8 @@ class GoalsController < ApplicationController
     end
 
     def show
-
+        @goal = Goal.find(params[:id])
+        render :show
     end
 
     def edit

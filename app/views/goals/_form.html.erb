@@ -1,6 +1,6 @@
-<% action = (goal.persisted? ? edit_goal_url(goal) : new_goal_url) %>
+<% action = (goal.persisted? ? edit_goal_url(goal) : goals_url) %>
 <% method = (goal.persisted? ? "PATCH" : "POST") %>
-<% submit_button = (goal.persisted? ? "Edit goal" : "Create goal") %>
+<% submit_button = (goal.persisted? ? "Edit goal" : "Create new goal!") %>
 
 <form action="<%= action %>" method="POST">
     <input 
@@ -23,33 +23,13 @@
     <textarea name="goal[details]" id="goal_details" 
     cols="30" rows="10"></textarea>
     <br><br>
-    <label for="goal_private_f">Public</label>
-    <input 
-        type="radio"
-        name="goal[private]"
-        id="goal_private_f"
-        value="<%= checked if !goal.private %>">
-    <br>
-    <label for="goal_private_t">Private</label>
-    <input 
-        type="radio"
-        name="goal[private]"
-        id="goal_private_t"
-        value="<%= checked if goal.private %>">
-    <br><br>
-    <label for="goal_completed_f">Work in progress...</label>
-    <input 
-        type="radio"
-        name=goal[completed]
-        id="goal_completed_f"
-        value="<%= checked if !goal.completed %>">
-    <br>
-    <label for="goal_completed_t">Completed!</label>
-    <input 
-        type="radio"
-        name="goal[completed]"
-        id="goal_completed"
-        value="<%= checked if goal.completed %>">
-    <br><br>
+    <label for="goal_private">Private?
+        <input type="checkbox" name=goal[private]
+            <%= 'checked= "true"' if goal.private %>>
+    </label>
+    <label for="goal_completed">Completed?
+        <input type="checkbox" name="goal[completed]"
+            <%= 'checked= "true"' if goal.completed %>>
+    </label>
     <input type="submit" value="<%= submit_button %>">
 </form>

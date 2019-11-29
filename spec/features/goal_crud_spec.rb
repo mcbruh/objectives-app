@@ -15,8 +15,7 @@ feature 'CRUD actions for goals' do
       
         scenario 'it should show goal after creating' do
           make_goal('testing goals', 'I made a goal work!')
-          expect(page).to redirect_to user_url(crud_test.id)
-          expect(page).to have_content, 'I made a goal work!'
+          expect(page).to have_content 'I made a goal work!'
         end
       
     end

@@ -17,7 +17,20 @@ feature 'CRUD actions for goals' do
           make_goal('testing goals', 'I made a goal work!')
           expect(page).to have_content 'I made a goal work!'
         end
-      
     end
 
+    feature 'updating a goal' do
+      given(:goal) { create(:goal, user:crud_test ) }
+
+      scenario 'it should render edit goal page with existing goal' do
+        visit edit_goal_url(goal)
+        expect(page).to have_content 'Edit goal'
+        expect(find_field('Title').value).to eq goal.title
+      end
+      
+      scenario 'it should show new goal after editing' do
+        edit_goal(goal)
+        expect(page).to have_content 'Edited goal'
+      end
+    end
 end

@@ -23,11 +23,18 @@ class GoalsController < ApplicationController
     end
 
     def edit
-
+        @goal = Goal.find(params[:id])
+        render :edit
     end
 
     def update
-
+        @goal = Goal.find(params[:id])
+        if @goal.update_attributes(goal_params)
+            redirect_to goal_url(@goal)
+        else
+            flash[:errors] = @goal.errors.full_messages
+            render :edit
+        end
     end
 
     def destroy

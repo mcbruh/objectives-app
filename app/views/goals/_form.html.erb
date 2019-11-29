@@ -1,6 +1,6 @@
-<% action = (goal.persisted? ? edit_goal_url(goal) : goals_url) %>
+<% action = (goal.persisted? ? goal_url(goal) : goals_url) %>
 <% method = (goal.persisted? ? "PATCH" : "POST") %>
-<% submit_button = (goal.persisted? ? "Edit goal" : "Create new goal!") %>
+<% submit_button = (goal.persisted? ? "Update goal" : "Create new goal!") %>
 
 <form action="<%= action %>" method="POST">
     <input 
@@ -21,7 +21,7 @@
     <label for="goal_details">Details</label>
     <br>
     <textarea name="goal[details]" id="goal_details" 
-    cols="30" rows="10"></textarea>
+    cols="30" rows="10"><%= goal.details %></textarea>
     <br><br>
     <label for="goal_private">Private?
         <input type="checkbox" name=goal[private]

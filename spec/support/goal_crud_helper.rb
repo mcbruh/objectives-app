@@ -8,4 +8,11 @@ module GoalCrudHelper
         click_on 'Create new goal!'
     end
 
+    def edit_goal(goal)
+        visit edit_goal_url(goal)
+        fill_in 'Title', with: 'Edited goal'
+        check 'Completed?'
+        click_on 'Update goal'
+    end
+
 end

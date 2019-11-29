@@ -1,0 +1,55 @@
+<% action = (goal.persisted? ? edit_goal_url(goal) : new_goal_url) %>
+<% method = (goal.persisted? ? "PATCH" : "POST") %>
+<% submit_button = (goal.persisted? ? "Edit goal" : "Create goal") %>
+
+<form action="<%= action %>" method="POST">
+    <input 
+        type="hidden"
+        name="authenticity_token"
+        value="<%= form_authenticity_token %>">
+    <input 
+        type="hidden"
+        name="_method"
+        value="<%= method %>">
+    <label for="goal_title">Title</label>
+    <input 
+        type="text"
+        name="goal[title]"
+        id="goal_title"
+        value="<%= goal.title %>">
+    <br><br>
+    <label for="goal_details">Details</label>
+    <br>
+    <textarea name="goal[details]" id="goal_details" 
+    cols="30" rows="10"></textarea>
+    <br><br>
+    <label for="goal_private_f">Public</label>
+    <input 
+        type="radio"
+        name="goal[private]"
+        id="goal_private_f"
+        value="<%= checked if !goal.private %>">
+    <br>
+    <label for="goal_private_t">Private</label>
+    <input 
+        type="radio"
+        name="goal[private]"
+        id="goal_private_t"
+        value="<%= checked if goal.private %>">
+    <br><br>
+    <label for="goal_completed_f">Work in progress...</label>
+    <input 
+        type="radio"
+        name=goal[completed]
+        id="goal_completed_f"
+        value="<%= checked if !goal.completed %>">
+    <br>
+    <label for="goal_completed_t">Completed!</label>
+    <input 
+        type="radio"
+        name="goal[completed]"
+        id="goal_completed"
+        value="<%= checked if goal.completed %>">
+    <br><br>
+    <input type="submit" value="<%= submit_button %>">
+</form>

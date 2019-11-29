@@ -1,0 +1,13 @@
+<h1><%= @current_user.username %>'s goal: <%= @goal.title %></h1>
+
+<p>Details: <%= @goal.details %></p>
+<br>
+<% if @goal.completed %>
+    <p>Completed?: Yes</p>
+<% else %>
+    <p>Completed?: No</p>
+<% end %>
+<br>
+<% if @goal.private %>
+    <p>Private</p>
+<% end %>

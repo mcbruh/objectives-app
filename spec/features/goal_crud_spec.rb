@@ -10,7 +10,7 @@ feature 'CRUD actions for goals' do
     feature 'creating a goal' do
         scenario 'it should render new goal page' do
           visit new_goal_url
-          expect(page).to have_content 'new goal!'
+          expect(page).to have_content 'Create a new goal!'
         end
       
         scenario 'it should show goal after creating' do

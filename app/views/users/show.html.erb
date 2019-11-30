@@ -1,1 +1,9 @@
 <h1>Welcome <%= @user.username %></h1>
+
+<h3>Goals</h3>
+<br>
+<ol>
+    <% @user.goals.each do |goal| %>
+        <li><a href="<%= goal_url(goal) %>"><%= goal.title %></a></li>
+    <% end %>
+</ol>

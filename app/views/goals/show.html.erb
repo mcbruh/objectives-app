@@ -2,6 +2,21 @@
 
 <p>Details: <%= @goal.details %></p>
 <br>
+<% if current_user.id == @goal.user.id %>
+    <a href="<%= edit_goal_url(@goal) %>">Edit this goal</a>
+    <form action="<%= goal_url(@goal.id) %>" method="POST">
+        <input 
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+        <input 
+            type="hidden"
+            name="_method"
+            value="DELETE">
+        <input type="submit" value="Delete this goal">
+    </form>
+<% end %>
+<br>
 <% if @goal.completed %>
     <p>Completed?: Yes</p>
 <% else %>

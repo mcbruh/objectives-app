@@ -33,4 +33,15 @@ feature 'CRUD actions for goals' do
         expect(page).to have_content 'Edited goal'
       end
     end
+
+    feature 'deleting a goal' do
+      given(:goal) { create(:goal, user: crud_test) }
+
+      scenario 'it should delete a goal' do
+        visit goal_url(goal)
+        click_on "Delete this goal"
+        expect(page).to_not have_content "<%= goal.title %>"
+      end
+    end
+    
 end

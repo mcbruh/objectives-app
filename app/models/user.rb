@@ -6,6 +6,8 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6 }
     after_initialize :ensure_session_token
     has_many :goals
+    has_many :goal_comments
+    has_many :user_comments
 
     def password=(password)
         @password = password

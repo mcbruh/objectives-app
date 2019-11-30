@@ -4,5 +4,6 @@ class Goal < ApplicationRecord
     validates :private, inclusion: { in: [true, false] }, default: false
     validates :completed, inclusion: { in: [true, false] }, default: false
     belongs_to :user
+    has_many :goal_comments
 
 end
